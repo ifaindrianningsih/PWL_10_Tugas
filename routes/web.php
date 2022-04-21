@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\MahasiswaController;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +15,11 @@ use App\Http\Controllers\ArticleController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
-Route::resource('articles', ArticleController::class);
-Route::get('/article/cetak_pdf', [ArticleController::class, 'cetak_pdf']);
+Route::resource('mahasiswa', MahasiswaController::class);
+Route::get('/cari', [MahasiswaController::class, 'cari'])->name('cari');
+Route::get('mahasiswa/nilai/{nim}', [MahasiswaController::class,'nilai'])->name('mahasiswa.nilai');
+Route::get('/mahasiswa/cetak_pdf/{nim}',[MahasiswaController::class,'cetak_pdf']);
